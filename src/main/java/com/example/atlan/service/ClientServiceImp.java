@@ -29,10 +29,7 @@ public class ClientServiceImp implements ClientService {
 		return ls;
 		
 	}
-	@Override
-	public ClientDetails findClientById(Integer id) {
-		return clientRepository.findByClientID(id);
-	}
+	
 	@Override
 	public ClientDetails saveClient(ClientDetails client) {
 		// TODO Auto-generated method stub

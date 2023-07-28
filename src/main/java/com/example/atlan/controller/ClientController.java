@@ -30,6 +30,7 @@ public class ClientController {
 	public ClientDetails findByClientId(@PathVariable("id") Integer clientId ) {
 		return clientService.findByClientId(clientId);
 	}
+	
 	@PostMapping("/add/client")
 	public ClientDetails saveClient(@RequestBody ClientDetails client) {
 		System.out.println("Client "+client.toString());

@@ -9,9 +9,6 @@ public interface ClientService {
 	List<ClientDetails> fetchAllClient();
 
 	ClientDetails saveClient(ClientDetails client);
-
-	ClientDetails findClientById(Integer id);
-
 	ClientDetails findByClientId(Integer clientId);
 	
 	
