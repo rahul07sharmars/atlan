@@ -1,8 +1,11 @@
 package com.example.atlan.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.example.atlan.service.TranslateService;
 import com.google.cloud.translate.Translate;
 import com.google.cloud.translate.TranslateOptions;
 import com.google.cloud.translate.Translation;
@@ -15,21 +18,19 @@ public class TranslateController {
 
     private static final Logger logger = LoggerFactory.getLogger(TranslateController.class);
 
-    private static final String API_KEY = "AIzaSyCxebiUD2XyTAXAJrOwK5oYNqXq-_7_PpU";
+    @Autowired
+    private TranslateService translateService;
 
     @GetMapping("/translate/{lang1}{lang2}{text}")
     // @PathVariable("id") Integer clientId
     // String sourceLanguage, String targetLanguage, String text
-    public static String translateText(@PathVariable("lang1") String sourceLanguage,
+    public String translateText(@PathVariable("lang1") String sourceLanguage,
             @PathVariable("lang2") String targetLanguage,
             @PathVariable("text") String text) {
         logger.info("inside translateText function of TranslateController");
-        Translate translate = TranslateOptions.newBuilder().setApiKey(API_KEY).build().getService();
 
-        Translation translation = translate.translate(text, Translate.TranslateOption.sourceLanguage(sourceLanguage),
-                Translate.TranslateOption.targetLanguage(targetLanguage));
+        return translateService.translateText(sourceLanguage, targetLanguage, text);
 
-        return translation.getTranslatedText();
     }
 
     @GetMapping("/language")

@@ -2,11 +2,13 @@ package com.example.atlan.service;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Service;
 
 import com.example.atlan.controller.MessageController;
 import com.twilio.Twilio;
 import com.twilio.rest.api.v2010.account.Message;
 
+@Service
 public class MessageServiceImp implements MessageService {
 
 	public static final String ACCOUNT_SID = "AC7f5a9ac63791c4ce2cb9d9bcd1ca3645";
@@ -20,7 +22,7 @@ public class MessageServiceImp implements MessageService {
 		Message message = Message.creator(
 				new com.twilio.type.PhoneNumber("+917976604882"),
 				new com.twilio.type.PhoneNumber("+17623395876"),
-				"Your message")
+				"Message from java Springboot")
 				.create();
 		logger.info("message send" + message.getTo());
 		logger.info("message ID" + message.getSid());
