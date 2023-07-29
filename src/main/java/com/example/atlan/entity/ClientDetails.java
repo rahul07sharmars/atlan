@@ -20,15 +20,7 @@ public class ClientDetails {
 	private Double incomePerAnnum;
 	private Double savingsPerAnnum;
 	private String mobileNumber;
-//	client_id SERIAL PRIMARY KEY,
-//    client_email VARCHAR(255),
-//    client_name VARCHAR(255), 
-//    income_per_annum FLOAT,
-//    savings_per_annum FLOAT,
-//    mobile_number VARCHAR(15)
-//); 
-	
-	
+
 	public ClientDetails() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -113,9 +105,4 @@ public class ClientDetails {
 		this.savingsPerAnnum = savings_per_annum;
 		this.mobileNumber = mobile_number;
 	}
-
-
-	
-	
-	
 }
