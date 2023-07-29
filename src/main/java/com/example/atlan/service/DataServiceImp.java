@@ -27,12 +27,12 @@ public class DataServiceImp implements DataService {
 
 	@Autowired
 	private ClientController clientController;
-	
+
 	@Override
 	public String generateExcel() throws IOException {
 		logger.info("inside generateExcel of DataController class");
 		List<ClientDetails> dataList = clientController.fetchAllClient();
-		logger.info("response from dataList "+dataList.toString());
+		logger.info("response from dataList " + dataList.toString());
 		// Create a new Excel workbook and sheet
 		String filePath = "D:\\Project\\Atlan_project\\output.xlsx";
 		Workbook workbook = new XSSFWorkbook();
@@ -46,7 +46,7 @@ public class DataServiceImp implements DataService {
 		headerRow.createCell(3).setCellValue("Income Per Annum");
 		headerRow.createCell(4).setCellValue("Savings Per Annum");
 		headerRow.createCell(5).setCellValue("Mobile Number");
-		
+
 		CellStyle headerCellStyle = workbook.createCellStyle();
 		Font headerFont = workbook.createFont();
 		headerFont.setBold(true);
@@ -71,13 +71,11 @@ public class DataServiceImp implements DataService {
 		// Write the Excel data to a file
 		try (FileOutputStream fileOut = new FileOutputStream(filePath)) {
 			workbook.write(fileOut);
-		} 
-		catch (IOException e) {
+		} catch (IOException e) {
 			// Handle the IOException here or rethrow it if necessary
 			e.printStackTrace();
 			throw e;
-		} 
-		finally {
+		} finally {
 			// Close the workbook to release resources
 			try {
 				workbook.close();
@@ -87,9 +85,9 @@ public class DataServiceImp implements DataService {
 				e.printStackTrace();
 				logger.warn(e.getMessage());
 				return "File Download Failed";
-				
+
 			}
 		}
-//		return filePath;
-}
+		// return filePath;
+	}
 }

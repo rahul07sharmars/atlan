@@ -8,9 +8,9 @@ import org.springframework.stereotype.Repository;
 import com.example.atlan.entity.ClientDetails;
 
 @Repository
-public interface ClientRepository extends JpaRepository<ClientDetails, Integer>  {
+public interface ClientRepository extends JpaRepository<ClientDetails, Integer> {
 
-//	@Query("")
+	// @Query("")
 	public List<ClientDetails> findAll();
 
 	public ClientDetails findByClientID(Integer id);

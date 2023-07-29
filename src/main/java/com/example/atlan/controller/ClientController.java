@@ -17,32 +17,31 @@ public class ClientController {
 
 	@Autowired
 	private ClientService clientService;
-	
+
 	private static final Logger logger = LoggerFactory.getLogger(ClientController.class);
 
-	
 	@GetMapping("/client")
 	public String home() {
 		logger.info("inside home function of ClientController");
 		return "Rahul Sharma";
 	}
-	
+
 	@GetMapping("/all/client")
 	public List<ClientDetails> fetchAllClient() {
 		logger.info("inside fetchAllClient function of ClientController");
 		return clientService.fetchAllClient();
 	}
-	
+
 	@GetMapping("/client/findById/{id}")
-	public ClientDetails findByClientId(@PathVariable("id") Integer clientId ) {
-		logger.info("inside findByClientId function of ClientController with clientID"+clientId);
+	public ClientDetails findByClientId(@PathVariable("id") Integer clientId) {
+		logger.info("inside findByClientId function of ClientController with clientID" + clientId);
 		return clientService.findByClientId(clientId);
 	}
-	
+
 	@PostMapping("/add/client")
 	public ClientDetails saveClient(@RequestBody ClientDetails client) {
-		logger.info("inside findByClientId function of ClientController with clientID"+client.toString());
-//		System.out.println("Client "+client.toString());
+		logger.info("inside findByClientId function of ClientController with clientID" + client.toString());
+		// System.out.println("Client "+client.toString());
 		return clientService.saveClient(client);
 	}
 }
