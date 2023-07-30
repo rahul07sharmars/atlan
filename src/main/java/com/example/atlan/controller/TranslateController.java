@@ -22,8 +22,6 @@ public class TranslateController {
     private TranslateService translateService;
 
     @GetMapping("/translate/{lang1}{lang2}{text}")
-    // @PathVariable("id") Integer clientId
-    // String sourceLanguage, String targetLanguage, String text
     public String translateText(@PathVariable("lang1") String sourceLanguage,
             @PathVariable("lang2") String targetLanguage,
             @PathVariable("text") String text) {

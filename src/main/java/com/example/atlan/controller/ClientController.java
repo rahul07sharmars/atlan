@@ -12,6 +12,9 @@ import org.slf4j.LoggerFactory;
 import com.example.atlan.entity.ClientDetails;
 import com.example.atlan.service.ClientService;
 
+/*
+ * ClientController contains all the end points to access Client Details
+ */
 @RestController()
 public class ClientController {
 
@@ -41,7 +44,6 @@ public class ClientController {
 	@PostMapping("/add/client")
 	public ClientDetails saveClient(@RequestBody ClientDetails client) {
 		logger.info("inside findByClientId function of ClientController with clientID" + client.toString());
-		// System.out.println("Client "+client.toString());
 		return clientService.saveClient(client);
 	}
 }

@@ -1,5 +1,6 @@
 package com.example.atlan.controller;
 
+import com.example.atlan.entity.MessageTemplate;
 import com.example.atlan.service.DataServiceImp;
 import com.example.atlan.service.MessageService;
 import com.twilio.Twilio;
@@ -13,6 +14,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.math.BigDecimal;
@@ -24,9 +27,14 @@ public class MessageController {
 	@Autowired
 	private MessageService messageService;
 
+	@PostMapping("/message/custom")
+	public String sendMessage(@RequestBody MessageTemplate messageTemplate) {
+		logger.info(messageTemplate.toString());
+		logger.info("inside send Message of MessageController");
+		return messageService.sendMessage(messageTemplate);
+	}
 	@GetMapping("/message")
 	public String sendMessage() {
-		logger.info("inside send Message of MessageController");
 		return messageService.sendMessage();
 	}
 }

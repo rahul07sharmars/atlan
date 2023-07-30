@@ -4,7 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
-import com.example.atlan.Global;
+import com.example.atlan.Constants;
 import com.example.atlan.controller.TranslateController;
 import com.google.cloud.translate.Translate;
 import com.google.cloud.translate.TranslateOptions;
@@ -21,7 +21,7 @@ public class TranslateServiceImp implements TranslateService {
     	logger.info("inside translateText function of TranslateServiceImp");
     	logger.info("input Recived parms sourceLanguage: "+sourceLanguage +" targetLanguage: "+targetLanguage+" text: "+text);
     	
-		Translate translate = TranslateOptions.newBuilder().setApiKey(Global.API_KEY).build().getService();
+		Translate translate = TranslateOptions.newBuilder().setApiKey(Constants.API_KEY).build().getService();
 
         Translation translation = translate.translate(text, Translate.TranslateOption.sourceLanguage(sourceLanguage),
                 Translate.TranslateOption.targetLanguage(targetLanguage));

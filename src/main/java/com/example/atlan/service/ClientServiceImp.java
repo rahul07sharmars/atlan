@@ -6,7 +6,7 @@ import java.util.regex.Pattern;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.example.atlan.Global;
+import com.example.atlan.Constants;
 import com.example.atlan.controller.ClientController;
 import com.example.atlan.entity.ClientDetails;
 import com.example.atlan.repository.ClientRepository;
@@ -21,11 +21,6 @@ public class ClientServiceImp implements ClientService {
 	private static final Logger logger = LoggerFactory.getLogger(ClientServiceImp.class);
 	@Autowired
 	private ClientRepository clientRepository;
-//	private static final String EMAIL_PATTERN = "^[a-zA-Z0-9_!#$%&amp;'*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$";
-//	private static final String MOBILE_REGEX = "(0/91)?[7-9][0-9]{9}";
-//	private static final Pattern pattern = Pattern.compile(EMAIL_PATTERN);
-	
-	
 	@Override
 	public List<ClientDetails> fetchAllClient() {
 		// TODO Auto-generated method stub
@@ -34,8 +29,6 @@ public class ClientServiceImp implements ClientService {
 		
 		logger.info("size of list: "+clientList.size());
 		for (ClientDetails clientDetails : clientList) {
-//			Matcher matcher=Global.pattern.matcher(clientDet.getClientEmail());
-//			Matcher matcher = pattern.matcher(clientDet.getClientEmail());
 			if(clientDetails.validateClient()!="valid")
 				System.out.println(clientDetails.validateClient());
 			
@@ -50,22 +43,6 @@ public class ClientServiceImp implements ClientService {
 		logger.info("inside saveClient function of ClientServiceImp" + client.toString());
 		if(client.validateClient()=="valid")
 			return clientRepository.save(client);
-//		// logger.info("")
-//		if (client.getIncomePerAnnum() < client.getSavingsPerAnnum()) {
-//			logger.warn("Saving per annum can't be greater than total income");
-//			// System.out.println("Saving per annum can't be greater than total income");
-//			return null;
-//		}
-//		if (!client.getMobileNumber().matches(regex)) {
-//			logger.warn("Mobile number not valid");
-//			// System.out.println("Mobile number not valid");
-//			return null;
-//		}
-//		ClientDetails clientResponse = clientRepository.save(client);
-//		logger.info("response from database" + clientResponse.toString());
-//		// System.out.print("clientResponse "+clientResponse.toString());
-//		// System.out.print("client in service "+client.toString());
-
 		return null;
 	}
 

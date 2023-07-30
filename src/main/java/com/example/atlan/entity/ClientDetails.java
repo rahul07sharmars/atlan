@@ -2,7 +2,7 @@ package com.example.atlan.entity;
 
 import java.util.regex.Matcher;
 
-import com.example.atlan.Global;
+import com.example.atlan.Constants;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -95,12 +95,12 @@ public class ClientDetails {
 		this.mobileNumber = mobile_number;
 	}
 	public String validateClient() {
-		Matcher matcher=Global.pattern.matcher(this.getClientEmail());
+		
+		Matcher matcher=Constants.pattern.matcher(this.getClientEmail());
 		if (this.getIncomePerAnnum() < this.getSavingsPerAnnum())
 			return "Saving per annum can't be greater than total income";
-		if (!this.getMobileNumber().matches(Global.MOBILE_REGEX))
+		if (!this.getMobileNumber().matches(Constants.MOBILE_REGEX))
 			return "Mobile number not valid";
-//		System.out.println(matcher.matches());
 		if(!matcher.matches())
 			return "Email not valid";
 		return "valid";
