@@ -1,5 +1,9 @@
 package com.example.atlan.entity;
 
+import java.util.regex.Matcher;
+
+import com.example.atlan.Global;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
@@ -89,5 +93,16 @@ public class ClientDetails {
 		this.incomePerAnnum = income_per_annum;
 		this.savingsPerAnnum = savings_per_annum;
 		this.mobileNumber = mobile_number;
+	}
+	public String validateClient() {
+		Matcher matcher=Global.pattern.matcher(this.getClientEmail());
+		if (this.getIncomePerAnnum() < this.getSavingsPerAnnum())
+			return "Saving per annum can't be greater than total income";
+		if (!this.getMobileNumber().matches(Global.MOBILE_REGEX))
+			return "Mobile number not valid";
+//		System.out.println(matcher.matches());
+		if(!matcher.matches())
+			return "Email not valid";
+		return "valid";
 	}
 }
